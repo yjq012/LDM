@@ -93,6 +93,7 @@ loss_BCE = torch.nn.BCELoss(reduction = 'sum')
 loss_MSE = torch.nn.MSELoss(reduction = 'sum')
 
 latent_d = 128
+lam = 0.5
 vaes = []
 latent_matrix = []
 for i in range(num_cluster):
@@ -136,7 +137,7 @@ for i in range(num_cluster):
                     for user_id in range(n):
                         target_imgs[user_id, item_id] = target_qos
                 loss_atk = loss_BCE(re_imgs, target_imgs)
-                loss = loss_MSE(re_imgs, imgs) + loss_atk
+                loss = loss_MSE(re_imgs, imgs) + lam * loss_atk
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
