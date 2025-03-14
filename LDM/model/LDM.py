@@ -38,7 +38,7 @@ matrix_re = csr_matrix((rating, (col, row)), shape=(num_item, num_user))
 train_matrix_re = matrix_re.toarray()
 dataset_re = torch.Tensor(train_matrix_re).float()
 
-seeds = [5586, 4810, 577, 1945, 74]
+seeds = []
 num_cluster = 4
 np.random.seed(seeds[num_cluster - 2])
 
